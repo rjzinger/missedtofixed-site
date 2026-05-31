@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A bedtime story written for your child — Founding 50</title>
+<meta name="description" content="A gentle, Scripture-grounded bedtime story written around your child — by name, by age, by what they love. Delivered to your inbox. No app. No screens for them.">
+
+<!-- Open Graph / social sharing -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="A bedtime story written for your child">
+<meta property="og:description" content="Gentle, Scripture-grounded stories with your child as the hero — delivered to your inbox. Reserve a founding spot.">
+<meta name="theme-color" content="#7c4a12">
+
+<!--
+  ANALYTICS — wire up ONE of these before launch (Plausible or GA4).
+  The track() helper below calls whichever is present, so you only
+  need to drop the snippet in.
+
+  Plausible:
+  <script defer data-domain="YOUR_DOMAIN" src="https://plausible.io/js/script.js"></script>
+
+  GA4:
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXX');</script>
+-->
+
+<style>
+  :root {
+    --ink:        #2c2438;   /* deep warm plum — body text */
+    --ink-soft:   #574d63;   /* muted text (>= 4.5:1 on cream) */
+    --cream:      #fdf8ee;
+    --card:       #ffffff;
+    --line:       #e9e0cf;
+    --accent:     #7c4a12;   /* burnt amber — CTAs (white text ~6.4:1) */
+    --accent-dk:  #5e3809;
+    --accent-bg:  #f6ecd6;   /* soft amber wash */
+    --gold:       #9a6b1f;
+    --focus:      #1d4ed8;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    color: var(--ink);
+    background: linear-gradient(180deg, #fdf8ee 0%, #fffdf9 38%, #ffffff 100%);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .serif { font-family: Georgia, "Iowan Old Style", "Times New Roman", serif; }
+
+  /* Layout */
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 1.4rem; }
+  section { padding: 3.25rem 0; }
+  @media (min-width: 700px) { section { padding: 4rem 0; } }
+
+  /* Skip link */
+  .skip {
+    position: absolute; left: -999px; top: 0;
+    background: var(--ink); color: #fff; padding: .6rem 1rem; border-radius: 0 0 8px 0; z-index: 50;
+  }
+  .skip:focus { left: 0; }
+
+  /* Focus visibility (a11y) */
+  a:focus-visible, button:focus-visible, summary:focus-visible,
+  input:focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 2px;
+  }
+
+  /* Header / wordmark */
+  header.bar { padding: 1.4rem 0 .25rem; }
+  .wordmark {
+    font-size: .85rem; letter-spacing: .2em; text-transform: uppercase;
+    color: var(--gold); font-weight: 700;
+  }
+
+  /* Hero */
+  .hero { text-align: center; padding-top: 1.5rem; }
+  h1 {
+    font-size: clamp(2.1rem, 5.4vw, 3.3rem);
+    line-height: 1.12; letter-spacing: -.015em;
+    margin: .4rem auto 1.1rem; max-width: 16ch;
+  }
+  .hero .sub {
+    font-size: clamp(1.05rem, 2.4vw, 1.22rem);
+    color: var(--ink-soft); max-width: 50ch; margin: 0 auto 2rem;
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-block; cursor: pointer; border: 0;
+    font: inherit; font-weight: 700; font-size: 1.02rem;
+    padding: .9rem 1.7rem; border-radius: 10px;
+    text-decoration: none; transition: background .15s ease, transform .05s ease;
+  }
+  .btn-primary { background: var(--accent); color: #fff; box-shadow: 0 2px 0 var(--accent-dk); }
+  .btn-primary:hover { background: var(--accent-dk); }
+  .btn-primary:active { transform: translateY(1px); }
+  .btn-ghost {
+    background: #fff; color: var(--accent-dk);
+    border: 1.5px solid var(--line);
+  }
+  .btn-ghost:hover { border-color: var(--gold); }
+  .reassure { font-size: .9rem; color: var(--ink-soft); margin-top: 1rem; }
+
+  /* Promise — 3 columns */
+  .grid3 { display: grid; gap: 1.5rem; }
+  @media (min-width: 720px) { .grid3 { grid-template-columns: repeat(3, 1fr); } }
+  .promise-item h3 { font-size: 1.08rem; margin: 0 0 .4rem; }
+  .promise-item p { margin: 0; color: var(--ink-soft); font-size: .98rem; }
+  .promise-item .mark {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 38px; height: 38px; border-radius: 50%;
+    background: var(--accent-bg); color: var(--accent-dk);
+    font-size: 1.2rem; margin-bottom: .7rem;
+  }
+
+  h2 {
+    font-size: clamp(1.5rem, 3.5vw, 2rem);
+    letter-spacing: -.01em; margin: 0 0 1.6rem;
+  }
+  .section-lead { text-align: center; }
+  .section-lead h2 { margin-bottom: .5rem; }
+  .section-lead .kicker {
+    text-transform: uppercase; letter-spacing: .16em; font-size: .8rem;
+    font-weight: 700; color: var(--gold); margin-bottom: .5rem;
+  }
+
+  /* How it works — numbered steps */
+  .steps { display: grid; gap: 1.4rem; margin-top: 1.8rem; }
+  @media (min-width: 720px) { .steps { grid-template-columns: repeat(3,1fr); } }
+  .step .step-num {
+    width: 34px; height: 34px; border-radius: 50%;
+    background: var(--accent); color: #fff; font-weight: 700;
+    display: flex; align-items: center; justify-content: center; margin-bottom: .7rem;
+  }
+  .step p { margin: 0; color: var(--ink-soft); }
+
+  /* Sample story card */
+  .story-section { background: #fbf3e3; }
+  .story-card {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 16px; padding: 1.8rem 1.6rem;
+    box-shadow: 0 10px 30px -18px rgba(60,40,10,.4);
+    margin-top: 1.6rem;
+  }
+  @media (min-width:700px){ .story-card { padding: 2.6rem 2.4rem; } }
+  .story-meta {
+    font-size: .8rem; text-transform: uppercase; letter-spacing: .14em;
+    color: var(--gold); font-weight: 700; margin-bottom: .5rem;
+  }
+  .story-card h3 { font-size: 1.5rem; margin: 0 0 1rem; line-height: 1.25; }
+  .story-body { font-size: 1.12rem; line-height: 1.8; color: #3a3248; }
+  .story-body p { margin: 0 0 1rem; }
+  .story-verse {
+    margin-top: 1.2rem; padding-top: 1.1rem; border-top: 1px dashed var(--line);
+    font-style: italic; color: var(--ink-soft); font-size: 1rem;
+  }
+  .story-actions { display: flex; justify-content: center; margin-top: 1.4rem; }
+
+  /* Founding offer block */
+  .founding {
+    border: 2px solid var(--gold); border-radius: 18px;
+    background: linear-gradient(180deg, #fffaf0 0%, #ffffff 100%);
+    padding: 2rem 1.6rem; text-align: center;
+    box-shadow: 0 14px 40px -22px rgba(120,80,10,.55);
+  }
+  @media (min-width:700px){ .founding { padding: 2.8rem 2.4rem; } }
+  .founding .badge {
+    display: inline-block; background: var(--accent); color: #fff;
+    font-size: .78rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+    padding: .35rem .85rem; border-radius: 999px; margin-bottom: 1rem;
+  }
+  .founding h2 { margin: 0 0 .9rem; }
+  .founding .price { font-size: 1.05rem; color: var(--ink-soft); max-width: 46ch; margin: 0 auto 1.5rem; }
+  .spots {
+    margin-top: 1.1rem; font-size: .92rem; color: var(--ink-soft);
+  }
+  .spots strong { color: var(--accent-dk); }
+
+  /* Plain prose blocks */
+  .prose p { color: var(--ink-soft); font-size: 1.05rem; max-width: 60ch; margin: 0 auto; }
+  .center { text-align: center; }
+
+  /* Privacy line */
+  .privacy-line {
+    background: var(--accent-bg); border-radius: 14px;
+    padding: 1.4rem 1.4rem; text-align: center;
+    font-size: .98rem; color: #4a3c1f;
+  }
+  .privacy-line a { color: var(--accent-dk); font-weight: 600; }
+
+  /* Waitlist form */
+  .waitlist {
+    background: #fff; border: 1px solid var(--line); border-radius: 16px;
+    padding: 1.8rem 1.6rem; max-width: 520px; margin: 1.6rem auto 0;
+  }
+  .waitlist label { display: block; font-weight: 600; font-size: .92rem; margin: 0 0 .35rem; }
+  .waitlist input {
+    width: 100%; padding: .8rem .9rem; font: inherit;
+    border: 1.5px solid var(--line); border-radius: 9px; margin-bottom: 1rem;
+    background: #fffdf9;
+  }
+  .waitlist input:focus { border-color: var(--gold); }
+  .waitlist .btn-primary { width: 100%; }
+  .form-success {
+    background: #ecfdf3; border: 1px solid #abdfc1; color: #14532d;
+    border-radius: 12px; padding: 1.3rem; text-align: center; font-weight: 600;
+  }
+  .form-hint { font-size: .82rem; color: var(--ink-soft); margin: -.4rem 0 1rem; }
+
+  /* FAQ accordion (native details/summary — keyboard accessible) */
+  .faq details {
+    border-bottom: 1px solid var(--line); padding: .25rem 0;
+  }
+  .faq summary {
+    list-style: none; cursor: pointer; padding: 1rem .25rem;
+    font-weight: 600; font-size: 1.05rem; display: flex; justify-content: space-between; gap: 1rem;
+  }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: "+"; color: var(--gold); font-weight: 700; font-size: 1.4rem; line-height: 1; }
+  .faq details[open] summary::after { content: "\2013"; }
+  .faq .answer { padding: 0 .25rem 1.1rem; color: var(--ink-soft); }
+
+  /* Thank-you banner (Stripe return) */
+  .thankyou {
+    display: none; background: #ecfdf3; border-bottom: 1px solid #abdfc1;
+    color: #14532d; text-align: center; padding: 1rem 1.4rem; font-weight: 600;
+  }
+  .thankyou.show { display: block; }
+
+  /* Footer */
+  footer {
+    border-top: 1px solid var(--line); padding: 2rem 0 2.5rem;
+    text-align: center; color: var(--ink-soft); font-size: .9rem;
+  }
+  footer a { color: var(--ink-soft); margin: 0 .5rem; text-decoration: none; }
+  footer a:hover { color: var(--accent-dk); }
+
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- Shown when a parent returns from Stripe with ?reserved=1 -->
+<div class="thankyou" id="thankyou" role="status">
+  🎉 You're in — your founding spot is reserved. Check your email for next steps.
+</div>
+
+<header class="bar">
+  <div class="wrap"><span class="wordmark serif">Bedtime, written for them</span></div>
+</header>
+
+<main id="main">
+
+  <!-- 1. HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <h1 class="serif">A new bedtime story for your child — by name, rooted in faith — delivered to your inbox.</h1>
+      <p class="sub">Tell us your child's name, age, and what they love. We write them a gentle, Scripture-grounded story they've never heard before. No app. No screens for them. Just a story you read together.</p>
+      <a href="#founding" class="btn btn-primary" data-track="hero_cta_click">Reserve my founding spot</a>
+      <p class="reassure">50 founding families · $9/month locked for life</p>
+    </div>
+  </section>
+
+  <!-- 2. THE PROMISE -->
+  <section>
+    <div class="wrap">
+      <div class="grid3">
+        <div class="promise-item">
+          <span class="mark" aria-hidden="true">★</span>
+          <h3>Your child is the hero</h3>
+          <p>Their name and the things they love are woven into every story.</p>
+        </div>
+        <div class="promise-item">
+          <span class="mark" aria-hidden="true">✦</span>
+          <h3>A real biblical truth</h3>
+          <p>Written for their age — never preachy, never scary.</p>
+        </div>
+        <div class="promise-item">
+          <span class="mark" aria-hidden="true">✉</span>
+          <h3>It lands in your inbox</h3>
+          <p>You read it. You decide what your kids see.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. HOW IT WORKS -->
+  <section>
+    <div class="wrap">
+      <div class="section-lead">
+        <p class="kicker">How it works</p>
+        <h2 class="serif">Three small steps to their first story</h2>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num" aria-hidden="true">1</div>
+          <p>Tell us about your child — name, age, and a few things they love.</p>
+        </div>
+        <div class="step">
+          <div class="step-num" aria-hidden="true">2</div>
+          <p>We write a custom story around a biblical value or verse.</p>
+        </div>
+        <div class="step">
+          <div class="step-num" aria-hidden="true">3</div>
+          <p>It arrives in your inbox — free once a month, or several times a week as a member.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. SAMPLE STORY (proof) -->
+  <section class="story-section">
+    <div class="wrap">
+      <div class="section-lead">
+        <p class="kicker">A real sample</p>
+        <h2 class="serif">See the kind of story they'll get</h2>
+      </div>
+
+      <!-- The card content below is the no-JS fallback (story #1). With JS on,
+           it's re-rendered from SAMPLE_STORIES and the "Read another" swap works. -->
+      <div class="story-card" id="storyCard" aria-live="polite">
+        <p class="story-meta" id="storyMeta">Sample · ages 3–5 · God's peace at bedtime</p>
+        <h3 class="serif" id="storyTitle">When Sam Couldn't Sleep</h3>
+        <div class="story-body serif" id="storyBody">
+          <p>Sam lay very still in the dark. The house made little creaks. A branch tapped the window. His heart went thump, thump, thump.</p>
+          <p>“Mama,” he called softly, “my heart is going too fast.”</p>
+          <p>Mama sat on the edge of his bed. “Let's give those worries to God,” she said. “He's big enough to hold every one.”</p>
+          <p>So Sam whispered his worries, one by one — the creaks, the dark, the tapping branch. And with each one, he imagined handing it gently up to God, like passing a heavy backpack to someone strong.</p>
+          <p>His heart began to slow. Thump… thump… thump.</p>
+          <p>“God's got them now,” said Mama. “You can rest.”</p>
+          <p>And Sam did. The creaks kept creaking, but they didn't worry him anymore. Some One bigger was awake, holding it all.</p>
+        </div>
+        <p class="story-verse" id="storyVerse">“In peace I will lie down and sleep, for you alone, Lord, make me dwell in safety. — Psalm 4:8”</p>
+      </div>
+
+      <div class="story-actions">
+        <button type="button" class="btn btn-ghost" id="swapBtn" data-track="sample_story_swap">Read another</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. FOUNDING OFFER -->
+  <section id="founding">
+    <div class="wrap">
+      <div class="founding">
+        <span class="badge">Founding 50</span>
+        <h2 class="serif">$9/month, locked for life.</h2>
+        <p class="price">I'm opening 50 spots to the first families who want this. Founders lock in <strong>$9/month forever</strong> (price rises after), get stories <strong>3× a week</strong>, and get a direct line to shape what gets built.</p>
+        <!--
+          TODO (rjzinger): replace the href with your live Stripe Payment Link
+          for the $9/mo founding plan. Set the Stripe success URL to:
+              https://YOUR_DOMAIN/stories/?reserved=1
+          so the thank-you banner + reserve_complete event fire on return.
+        -->
+        <a href="https://buy.stripe.com/REPLACE_WITH_PAYMENT_LINK"
+           class="btn btn-primary"
+           data-track="reserve_click"
+           target="_blank" rel="noopener">Reserve my founding spot</a>
+        <p class="spots">Spots remaining: <strong id="spotsRemaining">50</strong> <span style="opacity:.7">· updated by hand</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. FAITH & TRUST -->
+  <section>
+    <div class="wrap prose center">
+      <div class="section-lead">
+        <p class="kicker">You stay in control</p>
+        <h2 class="serif">The theology stays yours</h2>
+      </div>
+      <p>Tell us your tradition and we keep stories aligned with it — accurate Scripture, age-appropriate, always pointing kids to God rather than making them the rescuer. Every story is something you'd be glad to read aloud.</p>
+    </div>
+  </section>
+
+  <!-- WAITLIST (for not-ready-to-pay visitors) -->
+  <section>
+    <div class="wrap">
+      <div class="section-lead">
+        <p class="kicker">Not ready to reserve?</p>
+        <h2 class="serif">Get a free story first</h2>
+      </div>
+      <!--
+        TODO (rjzinger): wire this form to your email provider
+        (ConvertKit / Beehiiv / MailerLite). Two options:
+          1) Replace this <form> with the provider's embed, OR
+          2) Set FORM_ENDPOINT in the <script> to the provider's POST URL.
+        The waitlist_submit event + success state are already handled.
+      -->
+      <form class="waitlist" id="waitlistForm" novalidate>
+        <label for="wl-email">Your email <span aria-hidden="true">*</span></label>
+        <input type="email" id="wl-email" name="email" required autocomplete="email"
+               placeholder="you@example.com" aria-describedby="wl-email-hint">
+        <p class="form-hint" id="wl-email-hint">We'll send your first free story here.</p>
+
+        <label for="wl-name">First name <span style="font-weight:400;color:var(--ink-soft)">(optional)</span></label>
+        <input type="text" id="wl-name" name="first_name" autocomplete="given-name" placeholder="Jordan">
+
+        <button type="submit" class="btn btn-primary" data-track="waitlist_submit">Send me a free story</button>
+      </form>
+      <div class="waitlist form-success" id="waitlistSuccess" hidden role="status">
+        You're on the list — check your inbox. 💌
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. PRIVACY LINE -->
+  <section>
+    <div class="wrap">
+      <p class="privacy-line">
+        Built for parents, not marketed to children. We only ask for what's needed, never sell your data, and you can delete it anytime. <a href="/stories/privacy">Read our privacy policy →</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- 8. FAQ -->
+  <section>
+    <div class="wrap">
+      <div class="section-lead">
+        <p class="kicker">Questions</p>
+        <h2 class="serif">Good things to ask</h2>
+      </div>
+      <div class="faq">
+        <details>
+          <summary>Is this an app my kid uses?</summary>
+          <div class="answer">No. Stories come to your email; you read them together. There's nothing for your child to log into and no screen time for them.</div>
+        </details>
+        <details>
+          <summary>What ages is it for?</summary>
+          <div class="answer">Best for ages about 3–10. We adjust vocabulary and length to fit your child.</div>
+        </details>
+        <details>
+          <summary>Can I cancel?</summary>
+          <div class="answer">Anytime, in one click. If you stay, your founding price stays locked.</div>
+        </details>
+        <details>
+          <summary>I have more than one kid — can I add them?</summary>
+          <div class="answer">Founders can add a second child free during the trial.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- 9. FOOTER -->
+<footer>
+  <div class="wrap">
+    <a href="mailto:rjzinger@gmail.com">Contact</a>
+    <a href="/stories/privacy">Privacy</a>
+    <br><br>
+    &copy; 2026 · Bedtime stories for your child
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ----------------------------------------------------------------
+     Analytics — fires to Plausible and/or GA4 if present, else logs.
+     Event names match the build spec.
+  ---------------------------------------------------------------- */
+  function track(event, props) {
+    try {
+      if (typeof window.plausible === "function") window.plausible(event, props ? { props: props } : undefined);
+      if (typeof window.gtag === "function") window.gtag("event", event, props || {});
+    } catch (e) { /* never let analytics break the page */ }
+    if (!window.plausible && !window.gtag && window.console) console.log("[track]", event, props || "");
+  }
+
+  // Auto-wire any element with data-track="event_name"
+  document.querySelectorAll("[data-track]").forEach(function (el) {
+    el.addEventListener("click", function () { track(el.getAttribute("data-track")); });
+  });
+
+  /* ----------------------------------------------------------------
+     Sample stories — REPLACE these placeholders with real stories.
+     Set placeholder:false on a real entry to hide the warning note.
+  ---------------------------------------------------------------- */
+  // Real samples from the inventory. Add more entries to extend "Read another".
+  var SAMPLE_STORIES = [
+    {
+      meta: "Sample · ages 3–5 · God's peace at bedtime",
+      title: "When Sam Couldn't Sleep",
+      body: [
+        "Sam lay very still in the dark. The house made little creaks. A branch tapped the window. His heart went thump, thump, thump.",
+        "“Mama,” he called softly, “my heart is going too fast.”",
+        "Mama sat on the edge of his bed. “Let's give those worries to God,” she said. “He's big enough to hold every one.”",
+        "So Sam whispered his worries, one by one — the creaks, the dark, the tapping branch. And with each one, he imagined handing it gently up to God, like passing a heavy backpack to someone strong.",
+        "His heart began to slow. Thump… thump… thump.",
+        "“God's got them now,” said Mama. “You can rest.”",
+        "And Sam did. The creaks kept creaking, but they didn't worry him anymore. Some One bigger was awake, holding it all."
+      ],
+      verse: "In peace I will lie down and sleep, for you alone, Lord, make me dwell in safety. — Psalm 4:8"
+    },
+    {
+      meta: "Sample · ages 4–6 · courage",
+      title: "The Bravest Step",
+      body: [
+        "Tomorrow was Eli's first day at the new soccer club, and his tummy felt like it was full of jumping frogs.",
+        "“What if I don't know anyone?” he asked. “What if I'm not good enough?”",
+        "Dad knelt down. “Do you know what God told a man named Joshua when he was scared? He said, ‘Be strong and brave. I am with you wherever you go.’”",
+        "“Even on a soccer field?” said Eli.",
+        "“Even there.”",
+        "The next morning, Eli's frogs were still jumping a little. But he took one brave step onto the grass, and then another. He remembered: I am with you wherever you go. A boy with a bright green ball waved him over.",
+        "By the end, Eli had a new friend and grass stains on both knees. The bravest step, he learned, was just the first one — and he never had to take it alone."
+      ],
+      verse: "Be strong and courageous… for the Lord your God is with you wherever you go. — Joshua 1:9"
+    }
+  ];
+
+  var idx = 0;
+  var card = {
+    meta:  document.getElementById("storyMeta"),
+    title: document.getElementById("storyTitle"),
+    body:  document.getElementById("storyBody"),
+    verse: document.getElementById("storyVerse")
+  };
+
+  function renderStory(i) {
+    var s = SAMPLE_STORIES[i];
+    if (!s) return;
+    card.meta.textContent = s.meta;
+    card.title.textContent = s.title;
+    card.body.innerHTML = s.body.map(function (p) {
+      var d = document.createElement("p");
+      d.textContent = p;
+      return d.outerHTML;
+    }).join("");
+    card.verse.textContent = s.verse ? "“" + s.verse + "”" : "";
+    card.verse.style.display = s.verse ? "" : "none";
+  }
+  renderStory(0);
+
+  // Fire sample_story_view once the card scrolls into view
+  if ("IntersectionObserver" in window) {
+    var seen = false;
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting && !seen) { seen = true; track("sample_story_view"); io.disconnect(); }
+      });
+    }, { threshold: 0.4 });
+    io.observe(document.getElementById("storyCard"));
+  } else {
+    track("sample_story_view");
+  }
+
+  // "Read another" — swap to next story (click already fires sample_story_swap)
+  var swapBtn = document.getElementById("swapBtn");
+  if (swapBtn) {
+    if (SAMPLE_STORIES.length < 2) swapBtn.style.display = "none";
+    swapBtn.addEventListener("click", function () {
+      idx = (idx + 1) % SAMPLE_STORIES.length;
+      renderStory(idx);
+    });
+  }
+
+  /* ----------------------------------------------------------------
+     Waitlist form — swap the submit handler for your provider's embed
+     or set FORM_ENDPOINT to a POST URL (ConvertKit / Beehiiv / MailerLite).
+  ---------------------------------------------------------------- */
+  var FORM_ENDPOINT = ""; // e.g. "https://app.convertkit.com/forms/XXXX/subscriptions"
+  var form = document.getElementById("waitlistForm");
+  var success = document.getElementById("waitlistSuccess");
+
+  function showSuccess() {
+    form.hidden = true;
+    success.hidden = false;
+    success.focus && success.focus();
+  }
+
+  if (form) {
+    form.addEventListener("submit", function (ev) {
+      ev.preventDefault();
+      var email = form.email.value.trim();
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        form.email.focus();
+        return;
+      }
+      track("waitlist_submit");
+
+      if (FORM_ENDPOINT) {
+        var data = new FormData(form);
+        fetch(FORM_ENDPOINT, { method: "POST", body: data, mode: "no-cors" })
+          .then(showSuccess)
+          .catch(showSuccess); // no-cors gives an opaque response; treat as done
+      } else {
+        // No endpoint wired yet — still show success so the flow is testable.
+        showSuccess();
+      }
+    });
+  }
+
+  /* ----------------------------------------------------------------
+     Stripe return — show thank-you + fire reserve_complete.
+     Stripe success URL should be: /stories/?reserved=1
+  ---------------------------------------------------------------- */
+  try {
+    var params = new URLSearchParams(window.location.search);
+    if (params.get("reserved") === "1") {
+      var banner = document.getElementById("thankyou");
+      banner.classList.add("show");
+      banner.scrollIntoView({ block: "start" });
+      track("reserve_complete");
+      // Clean the URL so a refresh doesn't re-fire the event
+      if (window.history && history.replaceState) {
+        history.replaceState({}, document.title, window.location.pathname);
+      }
+    }
+  } catch (e) { /* no-op */ }
+
+})();
+</script>
+</body>
+</html>
