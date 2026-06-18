@@ -15,6 +15,7 @@ enables clean URLs so legal pages resolve without the `.html` extension.
 | `/terms` | `terms.html` | Terms of Service + SMS terms |
 | `/stories` | `stories/index.html` | Founding 50 pre-sale page (children's bedtime stories) |
 | `/stories/privacy` | `stories/privacy.html` | Privacy policy for the pre-sale page |
+| `/game` | `game/index.html` | "David & the Giant" — faith-based match-3 game for kids 8-12 |
 
 Production: https://missedtofixed.com
 
@@ -35,6 +36,22 @@ be wired up (each marked with a `TODO` comment in `stories/index.html`):
 
 Sample stories live in the `SAMPLE_STORIES` array in the page; add entries to
 extend the "Read another" rotation.
+
+## game/
+
+**David & the Giant** — a self-contained, faith-based **match-3 game** for kids
+ages 8-12, themed on the story of David & Goliath (1 Samuel 17). Single static
+HTML file, no build step, no external assets (sound is synthesized with the Web
+Audio API; tiles are emoji). Works in any mobile/desktop browser.
+
+How it plays: swap adjacent tiles to line up 3+; every 🪨 stone you match is
+slung at Goliath to drain his health bar. Beat him before you run out of moves.
+Five story levels each open with a narrative beat and reward a kid-friendly Bible
+verse on completion. High score and level progress are saved in `localStorage`
+(`davidGiant_v1`); a mute toggle is included.
+
+To extend: edit the `LEVELS` array (story, HP, move limit, verse) and the `TILE`
+array (emoji + colors) near the top of the `<script>` in `game/index.html`.
 
 ## source/
 
